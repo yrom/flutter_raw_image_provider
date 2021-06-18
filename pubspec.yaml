@@ -1,0 +1,17 @@
+name: raw_image_provider
+description: Support Image widget to load the raw image pixels data
+version: 0.1.0
+homepage: https://github.com/yrom/flutter_raw_image_provider/
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  crypto: ^2.1.5
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
