@@ -8,9 +8,9 @@ import 'package:crypto/crypto.dart';
 /// Decodes the given [image] (raw image pixel data) as an image ('dart:ui')
 class RawImageProvider extends ImageProvider<_RawImageKey> {
   final RawImageData image;
-  final double scale;
-  final int targetWidth;
-  final int targetHeight;
+  final double? scale;
+  final int? targetWidth;
+  final int? targetHeight;
   RawImageProvider(
     this.image, {
     this.scale = 1.0,
@@ -91,7 +91,7 @@ class RawImageData {
     this.pixelFormat = ui.PixelFormat.rgba8888,
   });
 
-  _RawImageKey _key;
+  _RawImageKey? _key;
   _RawImageKey _obtainKey() {
     return _key ??=
         _RawImageKey(width, height, pixelFormat.index, md5.convert(pixels));

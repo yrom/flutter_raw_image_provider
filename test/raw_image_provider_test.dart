@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:raw_image_provider/raw_image_provider.dart';
@@ -27,7 +26,7 @@ void main() {
       var completer = Completer<ImageInfo>.sync();
       provider.load(await provider.obtainKey(ImageConfiguration.empty),
           (Uint8List bytes,
-              {int cacheWidth, int cacheHeight, bool allowUpscaling}) {
+              {int? cacheWidth, int? cacheHeight, bool? allowUpscaling}) {
         fail('should not call');
       }).addListener(ImageStreamListener(
         (image, b) {
@@ -43,7 +42,7 @@ void main() {
     expect(imageInfo.image.width, width);
     expect(imageInfo.image.height, height);
     expect(
-      imageInfo.image.toByteData().then((b) => b.buffer.asUint8List()),
+      imageInfo.image.toByteData().then((b) => b!.buffer.asUint8List()),
       completion(equals(pixels)),
     );
   });
