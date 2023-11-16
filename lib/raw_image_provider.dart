@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
@@ -19,7 +18,8 @@ class RawImageProvider extends ImageProvider<_RawImageKey> {
   });
 
   @override
-  ImageStreamCompleter load(_RawImageKey key, DecoderCallback decode) {
+  ImageStreamCompleter loadImage(
+      _RawImageKey key, ImageDecoderCallback decode) {
     return MultiFrameImageStreamCompleter(
       codec: _loadAsync(key),
       scale: scale ?? 1.0,
