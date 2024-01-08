@@ -24,9 +24,10 @@ void main() {
     var provider = RawImageProvider(raw);
     Future<ImageInfo> nextFrame() async {
       var completer = Completer<ImageInfo>.sync();
-      provider.load(await provider.obtainKey(ImageConfiguration.empty),
-          (Uint8List bytes,
-              {int? cacheWidth, int? cacheHeight, bool? allowUpscaling}) {
+      provider.loadImage(await provider.obtainKey(ImageConfiguration.empty), (
+        ImmutableBuffer buffer, {
+        TargetImageSizeCallback? getTargetSize,
+      }) {
         fail('should not call');
       }).addListener(ImageStreamListener(
         (image, b) {
@@ -37,6 +38,7 @@ void main() {
       ));
       return completer.future;
     }
+
     // waiting for image frame
     var imageInfo = await nextFrame();
     expect(imageInfo.image.width, width);
